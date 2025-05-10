@@ -1,143 +1,198 @@
-(wa-venv) fadi@fadi:~/Downloads/code/odoo_simise/odoo18-kapitmas-environment/fad-prepare-buat-code/fad_rest_api/test/whatsapp-demo$ node index.js 
-Scan the QR code below:
-▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-█ ▄▄▄▄▄ █     ▀█▀▀▀▀▀ ▀▄  ▀▄▄▄ ▄ █▀▀▄ ▄▄ █▄ ▄█▀▄ ██ ▄▄▄▄▄ █
-█ █   █ █ █▀▄█▀█▄ ▄█▄▄▄ ▄█▀█▄▀▄▄▄▄▄▄▀▄█▀▄  ▀ ▄ ▄ ██ █   █ █
-█ █▄▄▄█ █▀█▄▄▀  ▀█▀ ▀█▀▀▀   ▄▄▄  ▄▄▀▄▄█▄▄▀▄▄▄ ▄▀▄██ █▄▄▄█ █
-█▄▄▄▄▄▄▄█▄▀ ▀ █ ▀ █▄▀ ▀▄▀▄█ █▄█ ▀▄█▄█ █▄█▄█ █ █ █ █▄▄▄▄▄▄▄█
-█▄ ▀█▄▄▄█▀█▀▄██ ▀█  ▀▀▄▀▀▀█ ▄▄  ▄ ▄█▀ ▄▀▄▀  █ ▀█▀ █▀▄█▄  ▄█
-██▄▄▀█▄▄██ ▄██▄ ▄▀▄█▀▀▀█▀▄██▄█▄▀▀▀▄▀ ███▄▄▄▄▀▀ ▀▄ ▀▄ ▄▄▄▄▀█
-█ █▄ ▄█▄ ▄ █▄▀▀▀▀▄▀ ▄▀▄▄▀ ▀▀▀▀▀█  ██▄▄ ▀▀▀ ▀ ▄ ▄▀▀█ ▄▀▀  ██
-██▄ ▀ █▄▀█████▀▄▀█▀ ▀█ █▄▄ █▀▀ █ ██▀ ▄ ▄▀ █ █ ▀█ ▄ ▀▀▀▄▄ ▀█
-█▀▀▀▀█ ▄▄▄█▄▄█▄▄ ▄▄▄▄▀ ▀▀▀ ▄▄ ▀▀▀ ██▄▄█ ▄█ ▀▀▄█▄ ▀█▀ ██▀▄▀█
-██▀▄█▀█▄█ ▀▀  ▀█▄  ▀▄███▀█▀██▀▀▀▀ ▀▀ ▀▀▄█ ██ █████▀▄█▀█▄▄▀█
-██▀   ▄▄ ▀▄█ ▄▄ ▀▀▄ ▀ ▄█▀▄▄▄▄█▀▀▀▄ ▄▄ ▀▀▄▀▀ ▀▄▀█▄▀▄ ▄█ ▀▄▄█
-█▀▄█ ██▄▀ █▀▄▀  ▄██▀▄█▄▄▄ ▀ ▄██▀▄█▄█▀█   █ ▀██▀ ▀█▀ █▄▄█▀▀█
-█▀ █ ▀▄▄ ▄▄▄█▄▀▀▀▄▀▄ ▀▀▀▀ ▄ ▄█ ▀▀███ ▄▄  ██▀█ ▀▄▀ ▀▀▄▀▄ ███
-██▀▄▄ ▄▄▄ ▀ ▄▀█▄▀ ▀  ▀▄ ▄█▀ ▄▄▄ ▄ ▀█▀█▀██ ▀▄ █▄▀▄ ▄▄▄ ▄█▄▀█
-█ ▀█▀ █▄█ ▀▀▀█▀ █▄▄▀▄ ▀█▀▀▄ █▄█ ▀▄ █ ▄▄▀ █  █▄ ▄█ █▄█ ▄█▀██
-██▀▄ ▄ ▄ ▄▀  █ █▀▄ ▀▄▀▄▀▀▀▀▄ ▄ ▄▀ ▄▄▄ █ ▄▄▄█▄ ▄▀█▄  ▄▄▄██▀█
-█ ▀██▀▀▄██▀██▀▀▄ █▄ ▄▀█▀▀▀▀▄▀█▀ █ ▄█▄ █▀ █▀ █▄ █▀ ▄▀▀██▀█▄█
-█ ▄▄▄█▄▄▄▀█▄▄███▄▀█▀▄▄ ████ ▄▀▄█▄▄ ▀▀▄█▄█▀▀ ▀▄▀█▀▀ ▀▀ ██ ██
-█ ▀▀█▀▄▄ █ ▄██▄▄▄█▄▄▄▄▀▀▄ ▀█▄███▀▄▀▄ ▄▄▀▄▀▀ █ ▀▄▀█ ▀▀▄██ ▄█
-█ ▀▀█▀▄▄▄▀▄▀  ▄▄▀ ▀█▀ █▄▀█▄▄▀ ▀█▀▄▀▀█▀▄ █▀ ▀▀    ▀▄█▀▀██▄▄█
-████▀▄▀▄▀▀▄▀ ▀▀▀ █▄ ▀▀▄▀   ▄▀▄▀▀▄ ▄█ ▄   █  ▀  ▄▀▀▀ ▀█▀  ▄█
-██▀▀▄█▄▄▀█ █▄█▄▀▀█▄█ █▀█ ▄▀▀ ▄██▀▀  ▀█▀ ██ ▄▄ ██  ▄█▀  ▄▄██
-██▄█  ▀▄█▀█▀▀ ▀▀▄▄▀ ▀▀▄▄▄▀  ▀█▄▄█  █ ▄▄  ▀ ▀ ▄▀██▀  ▀▄ ▀█ █
-█ ▀ ▀▀▄▄ ▄▀█▀ ▀██▀▀ █ ▄█▀▀▀▄ ▄████▄▄ █▀▀ ▀▄█▄▀    ▄▀▀ ▀█ ▀█
-███████▄▄▀█▄  ▀█ ▄▄ ▀▀▀▀▄▀▄ ▄▄▄ ▀ ██  █▀ ▀  ▄▄ ▄▀ ▄▄▄  █▀ █
-█ ▄▄▄▄▄ █▀▄█▄▀█▀ ▄▄▄▄▄▀ ███ █▄█ ▄▀▀▀▄███▀▄▀█▄█ ██ █▄█ █▄ ▀█
-█ █   █ █▄█▄ ▄█▄▀▀▄▄▀  █▀▄█    ▄▀▄▀█  ▄  █  ▀▄▀█ ▄    █▀▀ █
-█ █▄▄▄█ █▀ ▀ ▀ ▄▄█▄▄▄█▀▀▄  ▄█▄▄ ▄▄██▄▀ ▀  ▄▄█ ▀  ███▀▄ ▄███
-█▄▄▄▄▄▄▄█▄▄▄█▄▄██▄█▄█▄▄██▄█▄▄██▄███▄█▄██▄█▄▄█▄██▄▄██▄█▄██▄█
+Crypto-Curr Bot
+Crypto-Curr Bot adalah aplikasi Node.js yang mengirimkan pembaruan real-time tentang harga cryptocurrency, saham blue-chip AS, logam mulia, kurs mata uang, dan cuaca di kota-kota Indonesia (Jakarta, Surabaya, Bandung, Denpasar) melalui WhatsApp setiap menit. Bot ini dirancang untuk trader, UMKM logam mulia, dan komunitas keuangan di Indonesia, dengan fokus pada data lokal (kurs IDR, cuaca kota besar).
+Fitur
 
-Client is ready!
-Message sent successfully: Message {
-  _data: {
-    id: {
-      fromMe: true,
-      remote: '12345678@c.us',
-      id: '3EB0B02B049AB671679560',
-      _serialized: 'true_12345678@c.us_3EB0B02B049AB671679560'
-    },
-    viewed: false,
-    body: 'Hello, this is a test message!',
-    type: 'chat',
-    t: 1746762723,
-    from: {
-      server: 'c.us',
-      user: '6289677618942',
-      _serialized: '6289677618942@c.us'
-    },
-    to: {
-      server: 'c.us',
-      user: '12345678',
-      _serialized: '12345678@c.us'
-    },
-    ack: 0,
-    isNewMsg: true,
-    star: false,
-    kicNotified: false,
-    isFromTemplate: false,
-    pollInvalidated: false,
-    isSentCagPollCreation: false,
-    latestEditMsgKey: null,
-    latestEditSenderTimestampMs: null,
-    mentionedJidList: [],
-    groupMentions: [],
-    isEventCanceled: false,
-    eventInvalidated: false,
-    isVcardOverMmsDocument: false,
-    isForwarded: false,
-    labels: [],
-    hasReaction: false,
-    disappearingModeInitiator: 'chat',
-    disappearingModeTrigger: 'chat_settings',
-    productHeaderImageRejected: false,
-    lastPlaybackProgress: 0,
-    isDynamicReplyButtonsMsg: false,
-    isCarouselCard: false,
-    parentMsgId: null,
-    callSilenceReason: null,
-    isVideoCall: false,
-    callDuration: null,
-    callParticipants: null,
-    isMdHistoryMsg: false,
-    stickerSentTs: 0,
-    isAvatar: false,
-    lastUpdateFromServerTs: 0,
-    invokedBotWid: null,
-    bizBotType: null,
-    botResponseTargetId: null,
-    botPluginType: null,
-    botPluginReferenceIndex: null,
-    botPluginSearchProvider: null,
-    botPluginSearchUrl: null,
-    botPluginSearchQuery: null,
-    botPluginMaybeParent: false,
-    botReelPluginThumbnailCdnUrl: null,
-    botMessageDisclaimerText: null,
-    botMsgBodyType: null,
-    requiresDirectConnection: null,
-    bizContentPlaceholderType: null,
-    hostedBizEncStateMismatch: false,
-    senderOrRecipientAccountTypeHosted: false,
-    placeholderCreatedWhenAccountIsHosted: false,
-    links: []
+Harga Cryptocurrency: Top 10 koin (Bitcoin, Ethereum, dll.) dari CoinGecko.
+Harga Saham: 10 saham blue-chip AS (Apple, Microsoft, dll.) dari Finnhub.
+Harga Logam Mulia: Emas, perak, platinum, paladium dari MetalpriceAPI.
+Kurs Mata Uang: USD ke EUR, GBP, JPY (ExchangeRate-API) dan IDR (CoinGecko).
+Cuaca Lokal: Suhu dan kondisi cuaca di Jakarta, Surabaya, Bandung, Denpasar dari OpenWeatherMap.
+Otomatisasi WhatsApp: Kirim pembaruan ke nomor/grup WhatsApp menggunakan whatsapp-web.js.
+Efisiensi API: Cache 5 menit (10 menit untuk MetalpriceAPI) untuk mematuhi batasan rate limit.
+Deployment: Dioptimalkan untuk AWS EC2 dengan konfigurasi headless browser.
+
+Prasyarat
+
+Node.js: Versi 16 atau lebih tinggi (node -v).
+AWS EC2: Instance Ubuntu (misalnya, t2.micro) dengan akses SSH.
+WhatsApp: Nomor aktif untuk autentikasi via QR code.
+API Keys:
+Finnhub (saham, gratis, 60 permintaan/menit).
+MetalpriceAPI (logam mulia, gratis, 100 permintaan/bulan).
+ExchangeRate-API (kurs, gratis, 1500 permintaan/bulan).
+OpenWeatherMap (cuaca, gratis, 1 juta permintaan/bulan).
+CoinGecko (crypto, gratis, tanpa API key, ~30 permintaan/menit).
+
+
+
+Instalasi
+
+Clone Repository (jika menggunakan Git, atau buat direktori manual):
+git clone <repository-url>
+cd crypto-curr
+
+Atau:
+mkdir crypto-curr
+cd crypto-curr
+
+
+Inisialisasi Proyek:Buat package.json:
+{
+  "name": "crypto-curr",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "xvfb-run node crypto-curr.js"
   },
-  mediaKey: undefined,
-  id: {
-    fromMe: true,
-    remote: '12345678@c.us',
-    id: '3EB0B02B049AB671679560',
-    _serialized: 'true_12345678@c.us_3EB0B02B049AB671679560'
-  },
-  ack: 0,
-  hasMedia: false,
-  body: 'Hello, this is a test message!',
-  type: 'chat',
-  timestamp: 1746762723,
-  from: '6289677618942@c.us',
-  to: '12345678@c.us',
-  author: undefined,
-  deviceType: 'android',
-  isForwarded: false,
-  forwardingScore: 0,
-  isStatus: false,
-  isStarred: false,
-  broadcast: undefined,
-  fromMe: true,
-  hasQuotedMsg: false,
-  hasReaction: false,
-  duration: undefined,
-  location: undefined,
-  vCards: [],
-  inviteV4: undefined,
-  mentionedIds: [],
-  groupMentions: [],
-  orderId: undefined,
-  token: undefined,
-  isGif: false,
-  isEphemeral: undefined,
-  links: []
+  "dependencies": {
+    "axios": "^1.7.2",
+    "whatsapp-web.js": "^1.23.0",
+    "qrcode-terminal": "^0.12.0",
+    "dotenv": "^16.4.5"
+  }
 }
+
+
+Instal Dependensi Node.js:
+npm install
+
+
+Instal Dependensi Sistem di EC2 (untuk whatsapp-web.js dan Chromium):
+sudo apt-get update
+sudo apt-get install -y \
+  ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 \
+  libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 \
+  libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 \
+  libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 \
+  libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 \
+  libxss1 libxtst6 lsb-release wget xdg-utils xvfb chromium-browser
+
+
+Konfigurasi DNS di EC2 (untuk menghindari error ENOTFOUND):
+sudo bash -c 'echo "nameserver 8.8.8.8" >> /etc/resolv.conf'
+sudo bash -c 'echo "nameserver 1.1.1.1" >> /etc/resolv.conf'
+
+
+
+Konfigurasi
+
+Buat File .env:Di direktori proyek, buat file .env:
+FINNHUB_API_KEY=your_finnhub_key
+METALPRICE_API_KEY=your_metalprice_key
+EXCHANGE_RATE_API_KEY=your_exchangerate_key
+OPENWEATHER_API_KEY=your_openweather_key
+WHATSAPP_TO=6281234567890@c.us
+CITIES=Jakarta,Surabaya,Bandung,Denpasar
+
+Ganti your_..._key dengan API key yang sesuai dan WHATSAPP_TO dengan nomor tujuan (format: 628xxxxxxxxxx@c.us).
+
+Amankan File .env:
+chmod 600 .env
+
+
+Tambahkan .env ke .gitignore (jika menggunakan Git):
+.env
+
+
+
+Penggunaan
+
+Jalankan Bot:
+npm start
+
+Atau langsung:
+xvfb-run node crypto-curr.js
+
+
+Autentikasi WhatsApp:
+
+Saat pertama kali dijalankan, bot akan menampilkan QR code di terminal.
+Buka WhatsApp di ponsel, masuk ke Settings > Linked Devices > Link a Device, dan scan QR code.
+Setelah autentikasi, bot akan mengirim pembaruan setiap menit ke nomor/grup yang ditentukan di WHATSAPP_TO.
+
+
+Output:
+
+Pembaruan akan dikirim ke WhatsApp dan ditampilkan di terminal, berisi:
+Harga top 10 cryptocurrency (USD dan IDR).
+Harga 10 saham blue-chip AS (USD dan IDR).
+Harga logam mulia (emas, perak, platinum, paladium).
+Kurs USD ke EUR, GBP, JPY, dan IDR.
+Cuaca di Jakarta, Surabaya, Bandung, Denpasar.
+
+
+
+Contoh Output:
+📊 *Update Pasar (Terakhir diperbarui: 14:45:30)* 📊
+*Top 10 Cryptocurrencies*
+Bitcoin: $60,123.45 | Rp1,013,497,123
+Ethereum: $2,456.78 | Rp41,422,456
+...
+
+*Top 10 Saham Blue-Chip US*
+AAPL: $220.45 | Rp3,715,123
+MSFT: $415.67 | Rp7,005,456
+...
+
+*Harga Logam Mulia (per troy ons)*
+Emas: $2,400.00 | Rp40,456,800
+...
+
+*Kurs Mata Uang (Base: USD)*
+USD/EUR: 0.9200
+USD/IDR: Rp16,857
+...
+
+*Cuaca*
+Jakarta: Suhu: 28°C, Kondisi: Cerah
+Surabaya: Suhu: 30°C, Kondisi: Berawan
+...
+
+
+
+Batasan API
+
+CoinGecko: 30 permintaan/menit, aman dengan cache 5 menit (24 permintaan/hari).
+Finnhub: 60 permintaan/menit, aman (~120 permintaan/hari).
+MetalpriceAPI: 100 permintaan/bulan, aman dengan cache 10 menit (~144 permintaan/bulan).
+ExchangeRate-API: 1500 permintaan/bulan, aman (~288 permintaan/bulan).
+OpenWeatherMap: 1 juta permintaan/bulan, aman (~1152 permintaan/bulan).
+
+Troubleshooting
+
+QR Code Tidak Muncul:
+Pastikan dependensi sistem terinstal (langkah 4 instalasi).
+Cek log error di terminal.
+Uji Chromium:chromium-browser --version
+
+
+
+
+Error ENOTFOUND:
+Uji koneksi API:curl 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd'
+curl 'https://finnhub.io/api/v1/quote?symbol=AAPL&token=YOUR_KEY'
+
+
+Pastikan DNS dikonfigurasi (langkah 5 instalasi).
+
+
+Pesan Tidak Terkirim:
+Pastikan WHATSAPP_TO benar (format: 628xxxxxxxxxx@c.us).
+Cek status client: console.log(client.info) setelah ready.
+
+
+API Gagal:
+Verifikasi API key di .env.
+Uji endpoint dengan curl (lihat di atas).
+
+
+
+Kontribusi
+
+Laporkan bug atau saran di Issues (ganti dengan URL repo jika ada).
+Tambahkan fitur seperti alert kustom atau analitik dengan Pull Request.
+
+Lisensi
+MIT License. Lihat LICENSE untuk detail.
+Kontak
+Dikembangkan oleh [Fiko Aditama]. Hubungi via [fico.aditama31@gmail.com] atau WhatsApp untuk dukungan.
