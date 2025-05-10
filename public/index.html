@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.9/babel.min.js"></script>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function App() {
+            const [qrCode, setQrCode] = useState('');
+            const [isConnected, setIsConnected] = useState(false);
+            const [messages, setMessages] = useState({});
+            const [selectedChat, setSelectedChat] = useState(null);
+            const [manualNumber, setManualNumber] = useState('');
+            const [message, setMessage] = useState('');
+            const [file, setFile] = useState(null);
+            const [isSending, setIsSending] = useState(false);
+            const [error, setError] = useState('');
+            const [debug, setDebug] = useState('');
+            const socket = io();
+
+            useEffect(() => {
+                socket.on('connect', () => {
+                    setDebug('Connected to server');
+                });
+
+                socket.on('qr', (qr) => {
+                    setQrCode(qr);
+                    setIsConnected(false);
+                    setError('');
+                    setDebug('QR code received');
+                });
+
+                socket.on('ready', () => {
+                    setIsConnected(true);
+                    setQrCode('');
+                    socket.emit('getChats');
+                    setDebug('WhatsApp connected, fetching chats');
+                });
+
+                socket.on('message', (msg) => {
+                    setMessages((prev) => ({
+                        ...prev,
+                        [msg.from]: [...(prev[msg.from] || []), { from: msg.from, body: msg.body, media: msg.media, timestamp: new Date() }],
+                    }));
+                    setDebug(`Received message from ${msg.from}`);
+                });
+
+                socket.on('chats', (chats) => {
+                    if (chats.length === 0) {
+                        setDebug('No chats found. Use manual number input.');
+                    } else {
+                        setDebug(`Received ${chats.length} chats`);
+                    }
+                    setMessages((prev) => {
+                        const newMessages = { ...prev };
+                        chats.forEach((chat) => {
+                            if (!newMessages[chat.id]) {
+                                newMessages[chat.id] = [];
+                            }
+                        });
+                        return newMessages;
+                    });
+                });
+
+                socket.on('disconnected', () => {
+                    setIsConnected(false);
+                    setQrCode('');
+                    setError('Disconnected. Please reconnect.');
+                    setDebug('WhatsApp disconnected');
+                });
+
+                socket.on('connect_error', (err) => {
+                    setError(`Socket.IO error: ${err.message}`);
+                    setDebug('Socket.IO connection failed');
+                });
+
+                return () => {
+                    socket.off('connect');
+                    socket.off('qr');
+                    socket.off('ready');
+                    socket.off('message');
+                    socket.off('chats');
+                    socket.off('disconnected');
+                    socket.off('connect_error');
+                };
+            }, []);
+
+            const validatePhoneNumber = (number) => {
+                const cleaned = number.replace(/\D/g, '');
+                if (cleaned.length < 10 || cleaned.length > 15) {
+                    return null;
+                }
+                return cleaned;
+            };
+
+            const handleSelectManualNumber = () => {
+                const validNumber = validatePhoneNumber(manualNumber);
+                if (validNumber) {
+                    const formattedNumber = `${validNumber}@c.us`;
+                    setSelectedChat(formattedNumber);
+                    setMessages((prev) => ({
+                        ...prev,
+                        [formattedNumber]: prev[formattedNumber] || [],
+                    }));
+                    setManualNumber('');
+                    setDebug(`Selected number: ${formattedNumber}`);
+                } else {
+                    setError('Enter a valid phone number (e.g., 6281234567890, 10-15 digits)');
+                }
+            };
+
+            const handleSendMessage = async (e) => {
+                e.preventDefault();
+                if (!selectedChat || (!message.trim() && !file)) {
+                    setError('Select a chat and enter a message or file.');
+                    return;
+                }
+
+                // Confirm recipient
+                if (!confirm(`Send to ${selectedChat}?`)) {
+                    return;
+                }
+
+                setIsSending(true);
+                setError('');
+                setDebug(`Sending to ${selectedChat}`);
+
+                const formData = new FormData();
+                formData.append('recipient', selectedChat);
+                if (message.trim()) formData.append('message', message);
+                if (file) formData.append('file', file);
+
+                try {
+                    const response = await fetch('/send', {
+                        method: 'POST',
+                        body: formData,
+                    });
+                    const result = await response.json();
+                    if (!response.ok) {
+                        throw new Error(result.error || 'Failed to send message');
+                    }
+
+                    setMessages((prev) => ({
+                        ...prev,
+                        [selectedChat]: [...(prev[selectedChat] || []), { from: 'You', body: message, media: file ? URL.createObjectURL(file) : null, timestamp: new Date() }],
+                    }));
+                    setMessage('');
+                    setFile(null);
+                    document.getElementById('fileInput').value = null;
+                    setDebug(`Sent message to ${selectedChat}`);
+                } catch (err) {
+                    setError(`Error: ${err.message}`);
+                    console.error('Send error:', err);
+                    setDebug(`Failed to send: ${err.message}`);
+                } finally {
+                    setIsSending(false);
+                }
+            };
+
+            const formatTimestamp = (date) => {
+                return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            };
+
+            return (
+                <div className="flex h-screen">
+                    {/* Sidebar */}
+                    <div className="w-1/3 bg-white border-r">
+                        <div className="p-3 bg-[#F0F2F5]">
+                            <h2 className="text-lg font-semibold text-gray-800">Chats</h2>
+                            <div className="mt-2">
+                                <input
+                                    type="text"
+                                    placeholder="Phone number (e.g., 6281234567890)"
+                                    value={manualNumber}
+                                    onChange={(e) => setManualNumber(e.target.value)}
+                                    className="w-full p-2 rounded border"
+                                />
+                                <button
+                                    onClick={handleSelectManualNumber}
+                                    className="mt-2 w-full bg-[#25D366] text-white p-2 rounded hover:bg-[#128C7E]"
+                                >
+                                    Add Number
+                                </button>
+                            </div>
+                        </div>
+                        <div className="overflow-y-auto h-[calc(100vh-140px)]">
+                            {Object.keys(messages).length === 0 ? (
+                                <p className="p-3 text-gray-600">No chats. Add a number above.</p>
+                            ) : (
+                                Object.keys(messages).map((chatId) => (
+                                    <div
+                                        key={chatId}
+                                        onClick={() => {
+                                            setSelectedChat(chatId);
+                                            setDebug(`Selected chat: ${chatId}`);
+                                        }}
+                                        className={`p-3 flex items-center border-b cursor-pointer hover:bg-gray-100 ${selectedChat === chatId ? 'bg-[#EBECEF]' : ''}`}
+                                    >
+                                        <div className="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+                                        <div className="flex-1">
+                                            <p className="font-semibold">{chatId.split('@')[0]}</p>
+                                            <p className="text-sm text-gray-600 truncate">{messages[chatId].length > 0 ? messages[chatId][messages[chatId].length - 1].body : ''}</p>
+                                        </div>
+                                        <span className="text-xs text-gray-500">{messages[chatId].length > 0 ? formatTimestamp(messages[chatId][messages[chatId].length - 1].timestamp) : ''}</span>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Chat Area */}
+                    <div className="w-2/3 flex flex-col">
+                        {selectedChat ? (
+                            <>
+                                <div className="p-3 bg-[#F0F2F5] flex items-center">
+                                    <p className="font-semibold text-gray-800">{selectedChat.split('@')[0]}</p>
+                                </div>
+                                <div className="flex-1 bg-[#ECE5DD] p-4 overflow-y-auto">
+                                    {(messages[selectedChat] || []).map((msg, index) => (
+                                        <div key={index} className={`flex ${msg.from === 'You' ? 'justify-end' : 'justify-start'} mb-2`}>
+                                            <div className={`max-w-xs p-2 rounded-lg ${msg.from === 'You' ? 'bg-[#DCF8C6]' : 'bg-white'} shadow`}>
+                                                {msg.body && <p>{msg.body}</p>}
+                                                {msg.media && (
+                                                    msg.media.endsWith('.jpg') || msg.media.endsWith('.png') ? (
+                                                        <img src={msg.media} alt="Media" className="max-w-full mt-1 rounded" />
+                                                    ) : (
+                                                        <a href={msg.media} target="_blank" className="text-blue-500 underline">View File</a>
+                                                    )
+                                                )}
+                                                <span className="text-xs text-gray-500 block text-right">{formatTimestamp(msg.timestamp)}</span>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                                <form onSubmit={handleSendMessage} className="p-3 bg-[#F0F2F5] flex items-center">
+                                    <label htmlFor="fileInput" className="mr-2 cursor-pointer">
+                                        <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 002.828 2.828l6.586-6.586a4 4 0 00-5.656-5.656L5.586 10.828a6 6 0 008.486 8.486L20.414 13" /></svg>
+                                    </label>
+                                    <input
+                                        type="file"
+                                        id="fileInput"
+                                        accept="image/*,.pdf,.doc,.docx"
+                                        onChange={(e) => setFile(e.target.files[0])}
+                                        className="hidden"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder="Type a message"
+                                        value={message}
+                                        onChange={(e) => setMessage(e.target.value)}
+                                        className="flex-1 p-2 rounded-full bg-white border-none focus:outline-none"
+                                        disabled={isSending}
+                                    />
+                                    <button type="submit" className="ml-2 text-[#25D366]" disabled={isSending}>
+                                        {isSending ? (
+                                            <svg className="w-6 h-6 animate-spin" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+                                        ) : (
+                                            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" /></svg>
+                                        )}
+                                    </button>
+                                </form>
+                                {error && <p className="text-red-500 p-2 text-center">{error}</p>}
+                            </>
+                        ) : (
+                            <div className="flex-1 bg-[#ECE5DD] flex items-center justify-center">
+                                <p className="text-gray-600">Select a chat or add a number</p>
+                            </div>
+                        )}
+                        {debug && <p className="text-blue-500 p-2 text-center">{debug}</p>}
+                    </div>
+
+                    {/* QR Code Modal */}
+                    {!isConnected && qrCode && (
+                        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                                <h2 className="text-lg font-semibold mb-4">Scan QR Code</h2>
+                                <img src={qrCode} alt="QR Code" className="w-48 h-48 mx-auto" />
+                                <p className="text-gray-600 mt-4">Scan with WhatsApp to log in.</p>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
