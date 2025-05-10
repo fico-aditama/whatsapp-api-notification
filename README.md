@@ -26,7 +26,7 @@ Crypto-Curr Bot adalah aplikasi Node.js yang mengirimkan pembaruan real-time ten
 ## Instalasi
 1. **Clone Repository** (jika menggunakan Git, atau buat direktori manual):
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/fico-aditama/whatsapp-api-notification crypto-curr
    cd crypto-curr
    ```
    Atau:
