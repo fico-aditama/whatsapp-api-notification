@@ -1,5 +1,7 @@
 # Crypto-Curr Bot
 
+![WAMod Screenshot](wamod.png)
+
 Crypto-Curr Bot adalah aplikasi Node.js yang mengirimkan pembaruan real-time tentang harga cryptocurrency, saham blue-chip AS, logam mulia, kurs mata uang, dan cuaca di kota-kota Indonesia (Jakarta, Surabaya, Bandung, Denpasar) melalui WhatsApp setiap menit. Bot ini dirancang untuk trader, UMKM logam mulia, dan komunitas keuangan di Indonesia, dengan fokus pada data lokal (kurs IDR, cuaca kota besar).
 
 ## Fitur
